@@ -1,6 +1,4 @@
 {
-	"debug": true,
-
 	"videoSourceIndex": 0,
 	"frameDelay": 10,
 	"minPxSize": 50,

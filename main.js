@@ -1,20 +1,14 @@
 
-const cfg = require('./config.json');
-
-// Disable logging 
-if( !cfg.debug ){
-	console.log = function() {}
-}
-
-const cv = require('opencv4nodejs');
+const { 
+	cfg, 
+	cv
+} = require('./lib/init');
 
 const {
 	grabFrames, 
 	drawCrosshair, 
 	drawTarget
 } = require('./lib/video');
-
-console.log('Turret setup ...');
 
 grabFrames((frame) => {
 
@@ -30,15 +24,15 @@ grabFrames((frame) => {
 
 	const rangeMask = frameHLS.inRange(brownLower, brownUpper);
 
-
 	const blurred = rangeMask.blur(new cv.Size(10, 10));
 	const thresholded = blurred.threshold(100, 255, cv.THRESH_BINARY);
 
-	
 	drawTarget(thresholded, frame, cfg.minPxSize, crosshair);
 
-	//cv.imshow('rangeMask', rangeMask);
-	//cv.imshow('thresholded', thresholded);
-	cv.imshow('frame', frame);
-
+	if( cfg.guiEnabled )
+	{
+		//cv.imshow('rangeMask', rangeMask);
+		//cv.imshow('thresholded', thresholded);
+		cv.imshow('frame', frame);
+	}
 });
