@@ -1,4 +1,4 @@
-# NRF turret
+# NERF turret
 NERF automated turret
 
 ## Installation
