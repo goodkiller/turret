@@ -4,17 +4,8 @@
 	"minPxSize": 50,
 	"crosshairSize": 20,
 
-	"panMotor": [
-		20,	// Step
-		21,	// Direction
-		16	// End switch
-	],
-
-	"tiltMotor": [
-		19, // Step
-		26,	// Direction
-		13	// End switch
-	],
+	"panMotor": [20, 21, 16],
+	"tiltMotor": [19, 26, 13],
 
 	"flywheelMotor": [],
 
