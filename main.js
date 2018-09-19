@@ -12,12 +12,9 @@ const {
 
 grabFrames((frame) => {
 
-	// const frameHLS = frame.cvtColor(cv.COLOR_BGR2HLS);
 	const frameHLS = frame.cvtColor(cv.COLOR_BGR2HSV);
 
 	const crosshair = drawCrosshair( frame );
-
-	//console.log(cross);
 
 	const brownLower = new cv.Vec(0, 192, 98);
 	const brownUpper = new cv.Vec(179, 255, 255);
