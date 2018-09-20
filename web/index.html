@@ -5,31 +5,33 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<meta name="author" content="Marko Praakli (markopraakli@gmail.com)">
 	<title>Turret</title>
-	<link href="/css/bootstrap.min.css" rel="stylesheet">
-	<link href="/css/style.css" rel="stylesheet">
+	<link href="./css/bootstrap.min.css" rel="stylesheet">
+	<link href="./css/style.css" rel="stylesheet">
 </head>
-
 <body>
 	<div class="container-fluid">
 		<div class="row">
-			<div class="col-9">
-				
+			<div class="col-md-7">
+				<video width="100%" controls>
+					<source src="https://www.quirksmode.org/html5/videos/big_buck_bunny.mp4" type="video/mp4">
+					<source src="https://www.quirksmode.org/html5/videos/big_buck_bunny.ogg" type="video/ogg">
+					Your browser does not support the video tag.
+				</video> 
 			</div>
-			<div class="col-3">
-				<div class="row">
-					<div class="col-12">
-						<button class="btn btn-info" id="motAutoCalibrate">Motors calibrate</button> 
-						<button class="btn btn-danger" id="emergencyStop">Emergency STOP</button>
-					</div>
-					<div class="col-12" id="weblog"></div>
-				</div>
+			<div class="col-md-2">
+				<button class="btn btn-danger btn-block btn-lg" id="emergencyStop">Emergency STOP</button>
+				<button class="btn btn-info btn-block" id="calibrateMotors">Calibrate motors</button> 
+				<button class="btn btn-info btn-block" id="calibrateColors">Calibrate colors</button> 
+			</div>
+			<div class="col-md-3">
+				<div id="weblog"></div>
 			</div>
 
 		</div>
 	</div>
-	<script src="/js/jquery.slim.min.js"></script>
-	<script src="/js/bootstrap.min.js"></script>
-	<script src="/js/socket.io.slim.js"></script>
+	<script src="./js/jquery.slim.min.js"></script>
+	<script src="./js/bootstrap.min.js"></script>
+	<script src="./js/socket.io.slim.js"></script>
 	<script>
 	$(function(){
 		var socket = io();
@@ -40,13 +42,15 @@
 		});
 
 
-		$('#motAutoCalibrate').click(function(){
-			socket.emit('motAutoCalibrate');
+		$('#calibrateMotors').click(function(){
+			socket.emit('calibrateMotors');
 		});
 
 		$('#emergencyStop').click(function(){
 			socket.emit('emergencyStop');
 		});
+
+	
 
 	});
 	</script>
