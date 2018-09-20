@@ -38,7 +38,7 @@
 
 		socket.on('weblog', function(msg){
 
-			$('#weblog').append( $('<p>').text(msg) );
+			$('#weblog').prepend( $('<p>').text(msg) );
 		});
 
 
