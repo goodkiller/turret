@@ -12,11 +12,7 @@
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-md-7">
-				<video width="100%" controls>
-					<source src="https://www.quirksmode.org/html5/videos/big_buck_bunny.mp4" type="video/mp4">
-					<source src="https://www.quirksmode.org/html5/videos/big_buck_bunny.ogg" type="video/ogg">
-					Your browser does not support the video tag.
-				</video> 
+				<canvas id="canvas-video" width="600" height="400"></canvas>
 			</div>
 			<div class="col-md-2">
 				<button class="btn btn-danger btn-block btn-lg" id="emergencyStop">Emergency STOP</button>
@@ -41,6 +37,7 @@
 			$('#weblog').prepend( $('<p>').text(msg) );
 		});
 
+		
 
 		$('#calibrateMotors').click(function(){
 			socket.emit('calibrateMotors');
@@ -50,7 +47,31 @@
 			socket.emit('emergencyStop');
 		});
 
-	
+
+
+
+
+
+		var canvas = document.getElementById('canvas-video');
+		var context = canvas.getContext('2d');
+		var img = new Image();
+
+		// show loading notice
+		context.fillStyle = '#333';
+		context.fillText('Loading...', canvas.width/2-30, canvas.height/3);
+
+
+		socket.on('frame', function(frame){
+/*
+			img.onload = function () {
+				context.drawImage(this, 0, 0, canvas.width, canvas.height);
+			};
+
+			img.src = 'data:image/jpeg;base64,' + frame;
+			*/
+		});
+
+
 
 	});
 	</script>

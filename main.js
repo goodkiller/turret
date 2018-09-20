@@ -1,7 +1,8 @@
 
 const { 
 	cfg, 
-	cv
+	cv, 
+	web
 } = require('./lib/init');
 
 const {
@@ -25,6 +26,9 @@ grabFrames((frame) => {
 	const thresholded = blurred.threshold(100, 255, cv.THRESH_BINARY);
 
 	drawTarget(thresholded, frame, cfg.minPxSize, crosshair);
+
+	// Send frames to web
+	//web.io.emit('frame', cv.imencode('.jpg', frame).toString('base64') );
 
 	if( cfg.guiEnabled )
 	{
