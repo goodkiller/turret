@@ -5,6 +5,8 @@ body {
 
 #weblog {
 	border: 1px solid black;
+	height: 200px;
+	overflow-y: scroll;
 }
 
 #weblog p {
