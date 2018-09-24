@@ -6,25 +6,14 @@ NERF automated turret
 ### Requirements
 
 ```
-npm i --save opencv4nodejs
-npm i fast-sort
-npm i nanotimer
-npm i wiringpi-node
+npm i --save opencv4nodejs fast-sort nanotimer wiringpi-node pm2
 
-sudo apt-get install raspberrypi-kernel-headers
-sudo apt-get install v4l2loopback-dkms
-sudo apt-get install v4l2loopback-utils
+sudo apt-get install raspberrypi-kernel-headers v4l2loopback-dkms v4l2loopback-utils
 ```
 
 ## Execute
 ```
-node main.js
-node main.js --gui --debug
+pm2 start master.js
+pm2 start video.js
+pm2 start webserver.js
 ```
-
-### Flags
-
-| Argument  | Description |
-| ------------- | ------------- |
-| --gui | Enables GUI for debugging  |
-| --debug | Displays console.log outputs |
