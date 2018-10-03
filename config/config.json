@@ -8,10 +8,10 @@
 	"minPxSize": 50,
 	"crosshairSize": 20,
 
-	"panMotor": [20, 21, 16],
-	"tiltMotor": [19, 26, 13],
+	"panMotor": [20, 21, 12],
+	"tiltMotor": [5, 6, 26],
 
-	"flywheelMotor": [],
+	"flywheelMotor": [13, 19],
 
 	"webServerPort": 8080
 }
