@@ -1,5 +1,6 @@
 
 const cfg = require('./config/config.json');
+const util = require('lib/util');
 
 const ipc = require('node-ipc');
 
@@ -9,9 +10,6 @@ const http = require('http');
 const app = express();
 const server = http.createServer( app );
 const io = require('socket.io').listen( server );
-
-const util = require('util');
-const fs = require('fs');
 
 ipc.config.id = 'webserver';
 ipc.config.retry = 1500;
@@ -51,6 +49,10 @@ ipc.connectTo( 'master', () => {
 				call: 'video:calibrateColors'
 			});
 		});
+	});
+
+	ipc.of.master.on('webLog', function(message) {
+	    io.emit('weblog', message);
 	});
 
 	// Start server
