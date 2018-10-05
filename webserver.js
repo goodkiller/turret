@@ -23,34 +23,38 @@ app.use('/', express.static('web'));
 // Cnnect to master
 ipc.connectTo( 'master', () => {
 
+	// Calibrate colors
+	ipc.of.master.on( ipc.config.id + ':screenshot', (base64_data) => {
+		web.io.emit('picture', base64_data );
+	});
+
 	// SocketIO events
-	io.on('connection', function(socket){
+	io.on('connection', (socket) => {
 
 		// Motor autocalibrate
 		socket.on('calibrateMotors', () => {
-        	ipc.of.master.emit('onWebCmd', {
-        		call: 'calibrateMotors'
+        	ipc.of.master.emit('onCommand', {
+        		call: 'motor:calibrateMotors'
         	});
-
 		});
 
 		// Emergency STOP
 		socket.on('emergencyStop', () => {
-			ipc.of.master.emit('onWebCmd', {
-				call: 'emergencyStop'
+			ipc.of.master.emit('onCommand', {
+				call: 'motor:emergencyStop'
 			});
 		});
 
 		// Calibrate colors
 		socket.on('calibrateColors', () => {
-			ipc.of.master.emit('onWebCmd', {
-				call: 'calibrateColors'
+			ipc.of.master.emit('onCommand', {
+				call: 'video:calibrateColors'
 			});
 		});
 	});
 
 	// Start server
-	server.listen(cfg.webServerPort, function(){
+	server.listen(cfg.webServerPort, () => {
 		ipc.of.master.emit('log', ['[WEB] Port: %d', cfg.webServerPort]);
 	});
 });

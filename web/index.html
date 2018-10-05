@@ -84,6 +84,9 @@ $(function(){
 	// Stream picture for calibration
 	socket.on('picture', function(frame){
 
+		console.log('pilt');
+		console.log(frame);
+
 		const canvas = document.getElementById("picture");
 		let ctx = canvas.getContext("2d");
 
