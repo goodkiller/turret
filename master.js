@@ -16,40 +16,23 @@ ipc.serve(() => {
 		let log = util.format.apply(util, data );
 
 		console.log('[Ipc] log: ', log);
-
-		ipc.server.broadcast('webLog', log );
 	});
 
 	// Target information
-	ipc.server.on('onTarget', (data, socket) => {
+	ipc.server.on('onCommand', (command, socket) => {
 
-		// { x1: 148, y1: 24, x2: 217, y2: 69, d: 1993, xPos: 138, yPos: 182 }
-		ipc.of.master.emit('log', ['onTarget', data]);
+		console.log('[Ipc] onCommand: ', command);
 
-		if( data.d > 0 )
+		if( command.call !== undefined )
 		{
-			//ipc.of.motor.emit('panTo', data);
+			let data = null;
 
-			// Stop flywheel
-			//flywheel.stop();
+			if( command.data !== undefined ){
+				data = command.data;
+			}
 
-			// Move to target
-			//motor.pan.step( turretXPos, t );
-			//motor.tilt.step( turretYPos, t );
+			ipc.server.broadcast( command.call, data );
 		}
-		else
-		{
-			// Start flywheel
-			//flywheel.start( 300 );
-		}
-	});
-
-	// Target information
-	ipc.server.on('onWebCmd', (data, socket) => {
-
-		ipc.of.master.emit('log', ['onWebCmd', data]);
-
-		ipc.server.broadcast('calibrateMotors', data );
 	});
 });
 
