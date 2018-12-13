@@ -1,6 +1,6 @@
 
 const cfg = require('./config/config.json');
-const util = require('lib/util');
+const util = require('./lib/util');
 
 const ipc = require('node-ipc');
 

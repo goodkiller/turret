@@ -2,15 +2,15 @@
 	"guiEnabled": false,
 
 	"videoSourceIndex": 0,
-	"frameDelay": 10,
+	"frameDelay": 50,
 	"minPxSize": 50,
 	"crosshairSize": 20,
 
-	"panMotor": [20, 21, 12],
+	"panMotor": [24, 23, 18],
 	"tiltMotor": [5, 6, 26],
 
 	"flywheelMotor": [13, 19],
-	"flywheelSpeedRange": [1450, 2000],
+	"flywheelSpeedRange": [1500, 2000],
 
 	"webServerPort": 8080
 }
