@@ -23,7 +23,7 @@ ipc.connectTo( 'master', () => {
 
 	// Calibrate colors
 	ipc.of.master.on( ipc.config.id + ':screenshot', (base64_data) => {
-		web.io.emit('picture', base64_data );
+		io.emit('picture', base64_data );
 	});
 
 	// SocketIO events
@@ -47,6 +47,14 @@ ipc.connectTo( 'master', () => {
 		socket.on('calibrateColors', () => {
 			ipc.of.master.emit('onCommand', {
 				call: 'video:calibrateColors'
+			});
+		});
+
+		// Move motor
+		socket.on('moveMotor', (...args) => {
+			ipc.of.master.emit('onCommand', {
+				call: 'motor:moveMotor',
+				data: args
 			});
 		});
 	});

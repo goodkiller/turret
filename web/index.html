@@ -12,9 +12,20 @@
 <div class="container-fluid">
 	<div class="row">
 		<div class="col-md-2">
-			<button class="btn btn-danger btn-block btn-lg" id="emergencyStop">Emergency STOP</button>
-			<button class="btn btn-info btn-block" id="calibrateMotors">Calibrate motors</button> 
-			<button class="btn btn-info btn-block" id="calibrateColors">Calibrate colors</button> 
+			<div class="row">
+				<div class="col-sm-12">
+					<button class="btn btn-danger btn-block btn-lg" id="emergencyStop">Emergency STOP</button>
+					<button class="btn btn-info btn-block" id="calibrateMotors">Calibrate motors</button> 
+					<button class="btn btn-info btn-block" id="calibrateColors">Calibrate colors</button>
+
+					<br>
+
+					<button class="btn btn-info btn-block moveMotor" data-dir="up">Up</button> 
+					<button class="btn btn-info btn-block moveMotor" data-dir="down">Down</button> 
+					<button class="btn btn-info btn-block moveMotor" data-dir="left">Left</button> 
+					<button class="btn btn-info btn-block moveMotor" data-dir="right">Right</button> 
+				</div>
+			</div>
 		</div>
 		<div class="col-md-10">
 			<div id="weblog"></div>
@@ -79,6 +90,11 @@ $(function(){
 		if(c){
 			socket.emit('emergencyStop');
 		}
+	});
+
+	// Calibrate motors
+	$('.moveMotor').click(function(){
+		socket.emit('moveMotor', $(this).data('dir'));
 	});
 
 	// Stream picture for calibration
